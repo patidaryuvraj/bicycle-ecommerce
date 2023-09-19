@@ -1,0 +1,128 @@
+{%extends 'base.html'%}{%block content%} {%load static%}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <!-- fontawaysome icon -->
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <title>Bicycloo Shop</title>
+    <style>
+        .card-group {
+            background-color: rgba(3, 27, 39, 0.901);
+            margin-top: 25px;
+            padding: 50px;
+            align-items: center;
+        }
+        
+        .card-group h1 {
+            color: whitesmoke;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        
+        .card-group img {
+            width: auto;
+            height: 300px;
+        }
+        
+        .card {
+            width: 450px;
+            height: 500px;
+        }
+        
+        .checked {
+            color: orange;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- product -->
+    <div class="card-group">
+        <h1>Bicycles</h1>
+        <div class="row row-cols-1 row-cols-md-3">
+            {% for prods in prod%}
+            <div class="col mb-4">
+                <div class="card">
+                    <img src="/media/{{ prods.image }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{prods.product_name|slice:"0:20"}}....</h5>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <p class="card-text">{{prods.desc|slice:"0:50"}}...</p>
+                        <h6 class="card-title">Price : <span id="#">{{prods.price}}</span>/-</h6>
+
+
+                        <a href="{% url 'add_to_cart' prods.id %}" type="button" class="btn btn-warning" style=" margin-left: 15%;">Add to Cart</a>
+                        <a href="{% url 'productdetails' prods.id %}" target="_blank" type="button" class="btn btn-primary" style=" margin-left: 15%;">View</a>
+
+                    </div>
+                </div>
+            </div>
+            {%endfor %}
+
+
+            <!-- <a href="#"><button class="btn btn-primary btn-lg active " role="button" aria-pressed="true"> All Product</button></a> -->
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="bg-dark text-center text-white mt-1">
+        <!-- Grid container -->
+        <div class="text-center p-4">
+            <!-- Section: Social media -->
+            <section class="mb-4">
+                <!-- Facebook -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fa fa-facebook-f"></i></a>
+
+                <!-- Twitter -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fa fa-twitter"></i></a>
+
+                <!-- Google -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fa fa-google"></i></a>
+
+                <!-- Instagram -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fa fa-instagram"></i></a>
+
+                <!-- Linkedin -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fa fa-linkedin"></i></a>
+
+                <!-- Github -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fa fa-github"></i></a>
+            </section>
+            <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2023 Copyright:
+            <a class="text-white" href="http://localhost:8000/">BicyclooShop.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>
+{%endblock%}
